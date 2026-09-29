@@ -487,6 +487,122 @@ summary::after { color: #bd8a4a; }
   .legal-grid { grid-template-columns: 1fr; }
   .rows .row { grid-template-columns: 1fr auto; }
 }
+
+/* plan cards */
+.plans > .sub { max-width: 48ch; }
+.plans .rows {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0, 1fr));
+  gap: 18px;
+  margin-top: 46px;
+  border: 0;
+  align-items: stretch;
+}
+.plans .row,
+.plans .row.pop {
+  position: relative;
+  display: flex;
+  flex-direction: column;
+  align-items: stretch;
+  gap: 0;
+  min-width: 0;
+  min-height: 410px;
+  margin: 0;
+  padding: 30px;
+  overflow: hidden;
+  color: #17372b;
+  background: rgba(255,255,255,.78);
+  border: 1px solid rgba(23,55,43,.12);
+  border-radius: 22px;
+  box-shadow: 0 18px 52px rgba(23,55,43,.07);
+}
+.plans .row::before {
+  content: "";
+  width: 42px;
+  height: 3px;
+  margin-bottom: 28px;
+  border-radius: 99px;
+  background: #bd8a4a;
+}
+.plans .row.pop {
+  color: #f6f3ec;
+  background: #17372b;
+  border-color: #17372b;
+  box-shadow: 0 24px 58px rgba(23,55,43,.20);
+  transform: translateY(-10px);
+}
+.plans .row.pop::before { background: #d8b37d; }
+.plan-label {
+  display: inline-flex;
+  align-self: flex-start;
+  margin: -8px 0 18px;
+  padding: 7px 11px;
+  border: 1px solid rgba(23,55,43,.14);
+  border-radius: 999px;
+  color: #8b653a;
+  font-size: .72rem;
+  font-weight: 700;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+.row.pop .plan-label {
+  color: #17372b;
+  background: #d8b37d;
+  border-color: #d8b37d;
+}
+.plans .row h3 {
+  margin: 0 0 14px;
+  font: 500 clamp(1.55rem,2.2vw,2rem)/1.05 "DM Sans",sans-serif;
+  letter-spacing: -.035em;
+}
+.plans .row > p {
+  margin: 0;
+  min-height: 5.2em;
+  color: rgba(23,55,43,.70);
+  font-size: .98rem;
+}
+.plans .row.pop > p { color: rgba(246,243,236,.74); opacity: 1; }
+.plan-list {
+  display: grid;
+  gap: 10px;
+  margin: 26px 0 30px;
+  padding: 22px 0 0;
+  border-top: 1px solid rgba(23,55,43,.12);
+  list-style: none;
+  font-size: .93rem;
+}
+.row.pop .plan-list { border-top-color: rgba(246,243,236,.18); }
+.plan-list li { position: relative; padding-left: 23px; }
+.plan-list li::before {
+  content: "\2713";
+  position: absolute;
+  left: 0;
+  color: #a87539;
+  font-weight: 700;
+}
+.row.pop .plan-list li::before { color: #d8b37d; }
+.plans .row .btn {
+  width: 100%;
+  min-height: 50px;
+  margin-top: auto;
+  color: #17372b;
+  background: transparent;
+  border-color: rgba(23,55,43,.22);
+  font-weight: 600;
+}
+.plans .row:not(.pop) .btn:hover { background: #17372b; color: #f6f3ec; }
+.plans .row.pop .btn { background: #d8b37d; color: #17372b; border-color: #d8b37d; }
+.plans .row.pop .btn:hover { background: #ead0aa; }
+
+@media (max-width: 920px) {
+  .plans .rows { grid-template-columns: 1fr; max-width: 620px; }
+  .plans .row, .plans .row.pop { min-height: 0; transform: none; }
+  .plans .row > p { min-height: 0; }
+}
+@media (max-width: 520px) {
+  .plans .rows { margin-top: 34px; }
+  .plans .row, .plans .row.pop { padding: 25px 22px; border-radius: 18px; }
+}
 </style>
 <noscript><style>#pre{display:none!important}#track{height:auto!important}#stage{position:relative!important;height:auto!important;overflow:visible!important}.ch{position:relative!important;min-height:75vh!important;opacity:1!important;pointer-events:auto!important;transform:none!important}.fx,.wipe{opacity:1!important;transform:none!important;filter:none!important;clip-path:none!important}#rail,#scene,.menu-toggle{display:none!important}@media(max-width:760px){nav .l{display:grid!important}}</style></noscript>
 </head>
@@ -559,10 +675,11 @@ summary::after { color: #bd8a4a; }
 
 <section class="plans" id="plans">
   <h2>Three ways to <em>work together</em></h2>
+  <p class="sub">Choose the level of support that fits your goal, schedule and household. Every option starts with listening to what you need.</p>
   <div class="rows">
-    <div class="row"><h3>Single consult</h3><p>60-minute online session, written action plan and practical meal guidance.</p><a class="btn" href="#book">Enquire</a></div>
-    <div class="row pop"><h3>3-month program</h3><p>Personal plan, scheduled online reviews, between-session support and practical resources.</p><a class="btn" href="#book">Enquire</a></div>
-    <div class="row"><h3>Family plan</h3><p>Online nutrition support for household routines, shared meals and age-appropriate family goals.</p><a class="btn" href="#book">Enquire</a></div>
+    <article class="row"><span class="plan-label">Focused start</span><h3>Single consult</h3><p>A focused 60-minute online session to clarify your priorities and leave with practical next steps.</p><ul class="plan-list"><li>One-to-one consultation</li><li>Written action plan</li><li>Practical meal guidance</li></ul><a class="btn" href="#book">Enquire about a consult</a></article>
+    <article class="row pop"><span class="plan-label">Most supportive</span><h3>3-month program</h3><p>Ongoing guidance for building habits, reviewing progress and adapting your plan as life changes.</p><ul class="plan-list"><li>Personal nutrition plan</li><li>Scheduled online reviews</li><li>Between-session support</li></ul><a class="btn" href="#book">Enquire about the program</a></article>
+    <article class="row"><span class="plan-label">Shared goals</span><h3>Family plan</h3><p>Practical online nutrition support designed around shared meals, routines and family needs.</p><ul class="plan-list"><li>Household routine review</li><li>Family-friendly meal guidance</li><li>Age-appropriate support</li></ul><a class="btn" href="#book">Enquire for your family</a></article>
   </div>
 </section>
 </main>
